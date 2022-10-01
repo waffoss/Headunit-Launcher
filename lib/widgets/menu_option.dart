@@ -19,30 +19,55 @@ class MenuOption extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: GestureDetector(
-      child: Card(
-          color: Colors.transparent,
-          shape: Border(
-              right: BorderSide(color: Colors.grey, width: .3),
-              left: BorderSide(color: Colors.grey, width: .3),
-              bottom: BorderSide(color: borderColor, width: 6)),
-          child: Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  icon,
-                  size: 80,
-                ),
-                Text(
-                  text,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                )
-              ],
-            ),
+      child: GestureDetector(
+          onTap: onPressed,
+          onLongPress: onLongPress,
+          child: Column(
+            children: [
+              Card(
+                child: Container(
+                    padding: const EdgeInsets.all(16),
+                    child: Icon(
+                      icon,
+                      size: 80,
+                      color: Colors.black,
+                    )),
+                color: Colors.blue,
+              ),
+              Text(
+                text,
+                style: TextStyle(fontSize: 20),
+              )
+            ],
           )),
-      onTap: onPressed,
-      onLongPress: onLongPress,
-    ));
+    );
+
+    //   return Container(
+    //       child: GestureDetector(
+    //     child: Card(
+    //         color: Colors.transparent,
+    //         shape: Border(
+    //             right: BorderSide(color: Colors.grey, width: .3),
+    //             left: BorderSide(color: Colors.grey, width: .3),
+    //             bottom: BorderSide(color: borderColor, width: 6)),
+    //         child: Container(
+    //           child: Column(
+    //             mainAxisAlignment: MainAxisAlignment.center,
+    //             children: [
+    //               Icon(
+    //                 icon,
+    //                 size: 80,
+    //               ),
+    //               Text(
+    //                 text,
+    //                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    //               )
+    //             ],
+    //           ),
+    //         )),
+    //     onTap: onPressed,
+    //     onLongPress: onLongPress,
+    //   ));
+    // }
   }
 }

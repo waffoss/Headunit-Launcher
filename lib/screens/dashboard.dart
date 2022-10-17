@@ -7,72 +7,81 @@ import '../widgets/side_menu.dart';
 import './settings.dart';
 import './app_drawer.dart';
 
-class Dashboard extends StatefulWidget {
+class Dashboard extends StatelessWidget {
   const Dashboard({Key? key}) : super(key: key);
 
   @override
-  State<Dashboard> createState() => _DashboardState();
+  Widget build(BuildContext context) {
+    return SafeArea(
+        child: Scaffold(
+            body: Row(children: const [
+      SideMenu(),
+      Expanded(
+        child: MainMenu(),
+      )
+    ])));
+  }
 }
 
-const List<String> list = <String>['red', 'blue', 'green', 'yellow'];
-List<MenuOptionModel> menuOptions = <MenuOptionModel>[];
+// const List<String> list = <String>['red', 'blue', 'green', 'yellow'];
+// List<MenuOptionModel> menuOptions = <MenuOptionModel>[];
 
-enum MenuOptions {
-  RADIO,
-  MEDIA,
-  PHONE,
-  NAVIGATION,
-  CARPLAY,
-  VEHICLE,
-  APPS,
-  SETTINGS
-}
+// enum MenuOptions {
+//   RADIO,
+//   MEDIA,
+//   PHONE,
+//   NAVIGATION,
+//   CARPLAY,
+//   VEHICLE,
+//   APPS,
+//   SETTINGS
+// }
 
-class _DashboardState extends State<Dashboard> {
-  @override
-  void initState() {
-    super.initState();
-  }
+// class _DashboardState extends State<Dashboard> {
+  // @override
+  // void initState() {
+  //   super.initState();
+  // }
 
-  onOptionPress(BuildContext context, MenuOptions option) {
-    switch (option) {
-      case MenuOptions.APPS:
-        {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => const AppDrawer()));
-        }
-        break;
-      case MenuOptions.SETTINGS:
-        {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => const Settings()));
-        }
-        break;
-      case MenuOptions.VEHICLE:
-        {
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const VehicleScreen()));
-        }
-        break;
-      case MenuOptions.RADIO:
-        // TODO: Handle this case.
-        break;
-      case MenuOptions.MEDIA:
-        // TODO: Handle this case.
-        break;
-      case MenuOptions.PHONE:
-        // TODO: Handle this case.
-        break;
-      case MenuOptions.NAVIGATION:
-        // TODO: Handle this case.
-        break;
-      case MenuOptions.CARPLAY:
-        // TODO: Handle this case.
-        break;
-    }
-  }
+  // onOptionPress(BuildContext context, MenuOptions option) {
+  //   switch (option) {
+  //     case MenuOptions.APPS:
+  //       {
+  //         Navigator.of(context)
+  //             .push(MaterialPageRoute(builder: (context) => const AppDrawer()));
+  //       }
+  //       break;
+  //     case MenuOptions.SETTINGS:
+  //       {
+  //         Navigator.of(context)
+  //             .push(MaterialPageRoute(builder: (context) => const Settings()));
+  //       }
+  //       break;
+  //     case MenuOptions.VEHICLE:
+  //       {
+  //         Navigator.of(context).push(
+  //             MaterialPageRoute(builder: (context) => const VehicleScreen()));
+  //       }
+  //       break;
+  //     case MenuOptions.RADIO:
+  //       // TODO: Handle this case.
+  //       break;
+  //     case MenuOptions.MEDIA:
+  //       // TODO: Handle this case.
+  //       break;
+  //     case MenuOptions.PHONE:
+  //       // TODO: Handle this case.
+  //       break;
+  //     case MenuOptions.NAVIGATION:
+  //       // TODO: Handle this case.
+  //       break;
+  //     case MenuOptions.CARPLAY:
+  //       // TODO: Handle this case.
+  //       break;
+  //   }
+  // }
 
-  onOptionLongPress(BuildContext context) {
+  // onOptionLongPress(BuildContext context) {
     // String dropdownValue = '';
     // setState(() {
     //   dropdownValue = list.first;
@@ -103,20 +112,20 @@ class _DashboardState extends State<Dashboard> {
     //             ],
     //           ));
     //     });
-  }
+  // }
 
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            body: Row(children: const [
-      SideMenu(),
-      Expanded(
-        child: MainMenu(),
-      )
-    ])));
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return SafeArea(
+//         child: Scaffold(
+//             body: Row(children: const [
+//       SideMenu(),
+//       Expanded(
+//         child: MainMenu(),
+//       )
+//     ])));
+//   }
+// }
 
 
 // Column(

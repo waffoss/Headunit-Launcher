@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hl/view_models/dashboard_view_model.dart';
+import 'package:provider/provider.dart';
 import './screens/dashboard.dart';
 
 void main() {
@@ -9,7 +11,7 @@ void main() {
     DeviceOrientation.landscapeLeft,
   ]);
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack).then(
-        (_) => runApp(MyApp()),
+    (_) => runApp(MyApp()),
   );
   // runApp(const MyApp());
 }
@@ -17,13 +19,11 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'HL',
+      title: 'Headunit Launcher',
       theme: ThemeData(
-        // Define the default brightness and colors.
         brightness: Brightness.dark,
         scaffoldBackgroundColor: Colors.black,
         primaryColor: Colors.lightBlue[800],
@@ -31,8 +31,6 @@ class MyApp extends StatelessWidget {
         // Define the default font family.
         fontFamily: 'Roboto',
 
-        // Define the default `TextTheme`. Use this to specify the default
-        // text styling for headlines, titles, bodies of text, and more.
         textTheme: const TextTheme(
           headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
           headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
@@ -44,18 +42,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-
-  @override
   Widget build(BuildContext context) {
-
-    return SafeArea(child: Dashboard());
+    return MultiProvider(
+      providers: [ChangeNotifierProvider.value(value: DashboardViewModel())],
+      child: const SafeArea(child: Dashboard()),
+    );
   }
 }

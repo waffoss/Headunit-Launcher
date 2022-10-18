@@ -14,12 +14,13 @@ class Dashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            body: Row(children: const [
-      SideMenu(),
-      Expanded(
-        child: MainMenu(),
-      )
-    ])));
+            resizeToAvoidBottomInset: false,
+            body: Column(children: const [
+              Expanded(
+                child: MainMenu(),
+              ),
+              SideMenu(),
+            ])));
   }
 }
 

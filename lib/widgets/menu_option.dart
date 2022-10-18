@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_glow/flutter_glow.dart';
 
 class MenuOption extends StatelessWidget {
   const MenuOption(
@@ -24,23 +25,32 @@ class MenuOption extends StatelessWidget {
           onLongPress: onLongPress,
           child: Column(
             children: [
-              Card(
+              Expanded(
                 child: Container(
-                    padding: const EdgeInsets.all(16),
-                    child: Icon(
-                      icon,
-                      size: 80,
-                      color: Colors.black,
-                    )),
-                color: Colors.blue,
+                  padding: const EdgeInsets.all(20),
+                  child: GlowIcon(
+                    icon,
+                    size: 120,
+                    color: Colors.white,
+                    glowColor: Colors.purple,
+                  ),
+                  color: Colors.transparent,
+                ),
               ),
-              Text(
+              GlowText(
                 text,
                 style: TextStyle(fontSize: 20),
+                glowColor: Colors.purple,
               )
             ],
           )),
     );
+
+// Icon(
+//                       icon,
+//                       size: 120,
+//                       color: Colors.white,
+//                     )),
 
     //   return Container(
     //       child: GestureDetector(

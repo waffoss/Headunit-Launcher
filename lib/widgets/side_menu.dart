@@ -26,8 +26,9 @@ class _SideMenuState extends State<SideMenu> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(color: Colors.black),
       padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-      child: Column(children: [
+      child: Row(children: [
         Text(
           _timeString!,
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -35,14 +36,20 @@ class _SideMenuState extends State<SideMenu> {
         Spacer(),
         GestureDetector(
           child: Icon(
-            Icons.square_outlined,
-            color: Colors.blue,
+            Icons.settings_applications_rounded,
+            color: Colors.grey,
             size: 50,
           ),
           onTap: () => _openApps(context),
         ),
-        Spacer(),
-        Text("Passat")
+        GestureDetector(
+          child: Icon(
+            Icons.apps_rounded,
+            color: Colors.grey,
+            size: 50,
+          ),
+          onTap: () => _openApps(context),
+        ),
       ]),
     );
   }

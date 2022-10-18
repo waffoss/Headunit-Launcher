@@ -6,14 +6,14 @@ import '../models/menu_option_model.dart';
 class DashboardViewModel extends ChangeNotifier {
   List<MenuOptionModel> _menuItems = [];
   final List<MenuOptionModel> _defaultMenuItems = [
-    MenuOptionModel('Radio', 'as', Icons.radio.codePoint),
-    MenuOptionModel('Navigation', 'as', Icons.navigation.codePoint),
-    MenuOptionModel('AC', 'as', Icons.ac_unit.codePoint),
-    MenuOptionModel('Settings', 'as', Icons.settings.codePoint),
-    MenuOptionModel('Vehicle', 'as', Icons.car_rental.codePoint),
-    MenuOptionModel('Carplay', 'as', Icons.play_arrow.codePoint),
-    MenuOptionModel('Telephone', 'as', Icons.phone.codePoint),
-    MenuOptionModel('Satellite', 'as', Icons.satellite_alt.codePoint),
+    MenuOptionModel('Radio', 'as', Icons.radio),
+    MenuOptionModel('Navigation', 'as', Icons.navigation),
+    MenuOptionModel('AC', 'as', Icons.ac_unit),
+    MenuOptionModel('Settings', 'as', Icons.settings),
+    MenuOptionModel('Vehicle', 'as', Icons.car_rental),
+    MenuOptionModel('Carplay', 'as', Icons.play_arrow),
+    MenuOptionModel('Telephone', 'as', Icons.phone),
+    MenuOptionModel('Satellite', 'as', Icons.satellite_alt),
   ];
 
   List<MenuOptionModel> get getMenuItems {

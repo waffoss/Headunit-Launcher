@@ -7,10 +7,10 @@ class MenuOptionModel {
   String packageName = '';
   int iconCodePoint = 0;
 
-  MenuOptionModel(name, packageName, iconCodePoint) {
+  MenuOptionModel(name, packageName, IconData icon) {
     this.name = name;
     this.packageName = packageName;
-    this.iconCodePoint = iconCodePoint;
+    this.iconCodePoint = icon.codePoint;
   }
 
   MenuOptionModel.fromJson(Map<String, dynamic> json)

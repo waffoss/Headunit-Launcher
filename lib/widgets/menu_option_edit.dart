@@ -8,7 +8,7 @@ class MenuOptionEdit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [Expanded(child: TextField())],
+      children: [TextField(), TextField(), Spacer()],
     );
   }
 }

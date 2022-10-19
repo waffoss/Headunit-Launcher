@@ -39,39 +39,37 @@ class _MainMenuState extends State<MainMenu> {
     List<MenuOptionModel> menuItems =
         Provider.of<DashboardViewModel>(context).getMenuItems;
 
-    return Container(
-      decoration: BoxDecoration(
-          gradient: RadialGradient(
-              radius: 1,
-              center: Alignment.bottomCenter,
-              colors: [Color.fromARGB(255, 49, 0, 183), Colors.black])),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Spacer(),
-          Expanded(
-            child: ListView.builder(
-                padding: EdgeInsets.only(left: 10),
-                physics: BouncingScrollPhysics(),
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: menuItems.length,
-                itemBuilder: (BuildContext context, int index) {
-                  MenuOptionModel item = menuItems[index];
-                  return Padding(
-                    padding: EdgeInsets.only(right: 40),
-                    child: MenuOption(
+    return Stack(
+      children: [
+        Container(
+          decoration: const BoxDecoration(
+              gradient: RadialGradient(
+                  radius: 1.2,
+                  center: Alignment.bottomCenter,
+                  colors: [Color.fromARGB(255, 128, 66, 0), Colors.black])),
+        ),
+        ListView.builder(
+            physics: const BouncingScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            itemCount: menuItems.length,
+            itemBuilder: (BuildContext context, int index) {
+              MenuOptionModel item = menuItems[index];
+              return Container(
+                padding: const EdgeInsets.only(right: 50),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    MenuOption(
                       text: item.name,
                       icon: IconData(item.iconCodePoint,
                           fontFamily: 'MaterialIcons'),
                       onLongPress: () => editMenuOption(index),
-                    ),
-                  );
-                }),
-          ),
-          Spacer(),
-        ],
-      ),
+                    )
+                  ],
+                ),
+              );
+            })
+      ],
     );
   }
 }

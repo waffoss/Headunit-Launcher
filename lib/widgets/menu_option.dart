@@ -19,65 +19,27 @@ class MenuOption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: GestureDetector(
-          onTap: onPressed,
-          onLongPress: onLongPress,
-          child: Column(
-            children: [
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  child: GlowIcon(
-                    icon,
-                    size: 120,
-                    color: Colors.white,
-                    glowColor: Colors.purple,
-                  ),
-                  color: Colors.transparent,
-                ),
+    return GestureDetector(
+        onTap: onPressed,
+        onLongPress: onLongPress,
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(20),
+              color: Colors.transparent,
+              child: GlowIcon(
+                icon,
+                color: Colors.white,
+                glowColor: Colors.red,
+                size: 120,
               ),
-              GlowText(
-                text,
-                style: TextStyle(fontSize: 20),
-                glowColor: Colors.purple,
-              )
-            ],
-          )),
-    );
-
-// Icon(
-//                       icon,
-//                       size: 120,
-//                       color: Colors.white,
-//                     )),
-
-    //   return Container(
-    //       child: GestureDetector(
-    //     child: Card(
-    //         color: Colors.transparent,
-    //         shape: Border(
-    //             right: BorderSide(color: Colors.grey, width: .3),
-    //             left: BorderSide(color: Colors.grey, width: .3),
-    //             bottom: BorderSide(color: borderColor, width: 6)),
-    //         child: Container(
-    //           child: Column(
-    //             mainAxisAlignment: MainAxisAlignment.center,
-    //             children: [
-    //               Icon(
-    //                 icon,
-    //                 size: 80,
-    //               ),
-    //               Text(
-    //                 text,
-    //                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-    //               )
-    //             ],
-    //           ),
-    //         )),
-    //     onTap: onPressed,
-    //     onLongPress: onLongPress,
-    //   ));
-    // }
+            ),
+            GlowText(
+              text,
+              style: TextStyle(fontSize: 30),
+              glowColor: Colors.red,
+            ),
+          ],
+        ));
   }
 }

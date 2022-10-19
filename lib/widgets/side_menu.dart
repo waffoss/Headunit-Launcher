@@ -5,6 +5,8 @@ import 'package:hl/screens/app_drawer.dart';
 import 'dart:async';
 
 import 'package:intl/intl.dart';
+import 'package:nowplaying/nowplaying.dart';
+import 'package:provider/provider.dart';
 
 class SideMenu extends StatefulWidget {
   const SideMenu({super.key});
@@ -20,6 +22,12 @@ class _SideMenuState extends State<SideMenu> {
   void initState() {
     _timeString = _formatDateTime(DateTime.now());
     Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
+    NowPlaying.instance.isEnabled().then((bool isEnabled) async {
+      if (!isEnabled) {
+        final shown = await NowPlaying.instance.requestPermissions();
+        print('MANAGED TO SHOW PERMS PAGE: $shown');
+      }
+    });
     super.initState();
   }
 
@@ -33,10 +41,18 @@ class _SideMenuState extends State<SideMenu> {
           _timeString!,
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
+        StreamProvider<NowPlayingTrack>.value(
+          value: NowPlaying.instance.stream,
+          initialData: NowPlayingTrack(title: ''),
+          child: Consumer<NowPlayingTrack>(builder: (context, track, _) {
+            if (track == null) return Container();
+            return Text(track.title ?? '');
+          }),
+        ),
         Spacer(),
         GestureDetector(
           child: Icon(
-            Icons.settings_applications_rounded,
+            Icons.settings_rounded,
             color: Colors.grey,
             size: 50,
           ),

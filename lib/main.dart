@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hl/view_models/dashboard_view_model.dart';
+import 'package:nowplaying/nowplaying.dart';
 import 'package:provider/provider.dart';
 import './screens/dashboard.dart';
 
@@ -10,6 +11,7 @@ void main() {
     DeviceOrientation.landscapeRight,
     DeviceOrientation.landscapeLeft,
   ]);
+  NowPlaying.instance.start(resolveImages: true);
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack).then(
     (_) => runApp(MyApp()),
   );

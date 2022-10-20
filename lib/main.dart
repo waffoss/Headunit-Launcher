@@ -15,7 +15,6 @@ void main() {
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack).then(
     (_) => runApp(MyApp()),
   );
-  // runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -23,24 +22,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Headunit Launcher',
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        scaffoldBackgroundColor: Colors.black,
-        primaryColor: Colors.lightBlue[800],
+    return MultiProvider(
+        providers: [ChangeNotifierProvider.value(value: DashboardViewModel())],
+        child: MaterialApp(
+          title: 'Headunit Launcher',
+          theme: ThemeData(
+            brightness: Brightness.dark,
+            scaffoldBackgroundColor: Colors.black,
+            primaryColor: Colors.lightBlue[800],
 
-        // Define the default font family.
-        fontFamily: 'Roboto',
+            // Define the default font family.
+            fontFamily: 'Roboto',
 
-        textTheme: const TextTheme(
-          headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-          headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
-          bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
-        ),
-      ),
-      home: const MyHomePage(),
-    );
+            textTheme: const TextTheme(
+              headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+              headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
+              bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+            ),
+          ),
+          home: const MyHomePage(),
+        ));
   }
 }
 
@@ -49,9 +50,6 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [ChangeNotifierProvider.value(value: DashboardViewModel())],
-      child: const SafeArea(child: Dashboard()),
-    );
+    return const SafeArea(child: Dashboard());
   }
 }

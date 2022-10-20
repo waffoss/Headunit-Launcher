@@ -5,16 +5,6 @@ import '../models/menu_option_model.dart';
 
 class DashboardViewModel extends ChangeNotifier {
   List<MenuOptionModel> _menuItems = [];
-  final List<MenuOptionModel> _defaultMenuItems = [
-    MenuOptionModel('Radio', 'as', Icons.radio),
-    MenuOptionModel('Navigation', 'as', Icons.navigation),
-    MenuOptionModel('AC', 'as', Icons.ac_unit),
-    MenuOptionModel('Settings', 'as', Icons.settings),
-    MenuOptionModel('Vehicle', 'as', Icons.car_rental),
-    MenuOptionModel('Carplay', 'as', Icons.play_arrow),
-    MenuOptionModel('Telephone', 'as', Icons.phone),
-    MenuOptionModel('Satellite', 'as', Icons.satellite_alt),
-  ];
 
   List<MenuOptionModel> get getMenuItems {
     return _menuItems;
@@ -28,22 +18,16 @@ class DashboardViewModel extends ChangeNotifier {
                       MenuOptionModel.decode(prefs.getString('menuOptions')!),
                 }
               : {
-                  prefs.setString(
-                      'menuOptions', MenuOptionModel.encode(_defaultMenuItems)),
-                  _menuItems = _defaultMenuItems,
+                  prefs.setString('menuOptions', MenuOptionModel.encode([])),
+                  _menuItems = [],
                 },
           notifyListeners()
         });
-
-    print("in");
   }
 
   void updateItem(int index, MenuOptionModel item) {
-    SharedPreferences.getInstance().then((prefs) => {
-          _menuItems[index] = item,
-          prefs.setString('menuOptions', MenuOptionModel.encode(_menuItems)),
-          notifyListeners()
-        });
+    _menuItems[index] = item;
+    _save();
   }
 
   void addItem(MenuOptionModel item) {
@@ -54,8 +38,33 @@ class DashboardViewModel extends ChangeNotifier {
         });
   }
 
+  void removeItem(int index) {
+    _menuItems.removeAt(index);
+    _save();
+  }
+
+  void changeItemPosition(int index, bool isPrev) {
+    if ((isPrev && index - 1 < 0) ||
+        (!isPrev && index + 1 >= _menuItems.length)) {
+      return;
+    }
+    MenuOptionModel item = _menuItems[index];
+    MenuOptionModel flipItem = _menuItems[isPrev ? index - 1 : index + 1];
+    _menuItems[isPrev ? index - 1 : index + 1] = item;
+    _menuItems[index] = flipItem;
+
+    _save();
+  }
+
   void restoreDefaults() {
     SharedPreferences.getInstance()
         .then((prefs) => {prefs.remove('menuOptions')});
+  }
+
+  void _save() {
+    SharedPreferences.getInstance().then((prefs) => {
+          prefs.setString('menuOptions', MenuOptionModel.encode(_menuItems)),
+          notifyListeners()
+        });
   }
 }

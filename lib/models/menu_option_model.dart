@@ -5,23 +5,19 @@ import 'package:flutter/material.dart';
 class MenuOptionModel {
   String name = '';
   String packageName = '';
-  int iconCodePoint = 0;
+  String base64Image = '';
 
-  MenuOptionModel(name, packageName, IconData icon) {
-    this.name = name;
-    this.packageName = packageName;
-    this.iconCodePoint = icon.codePoint;
-  }
+  MenuOptionModel(this.name, this.packageName, this.base64Image);
 
   MenuOptionModel.fromJson(Map<String, dynamic> json)
       : name = json['name'],
         packageName = json['packageName'],
-        iconCodePoint = json['iconCodePoint'];
+        base64Image = json['base64Image'];
 
   static Map<String, dynamic> toMap(MenuOptionModel option) => {
         'name': option.name,
         'packageName': option.packageName,
-        'iconCodePoint': option.iconCodePoint
+        'base64Image': option.base64Image
       };
 
   static String encode(List<MenuOptionModel> menuUptions) => json.encode(
